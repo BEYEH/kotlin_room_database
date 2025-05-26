@@ -14,9 +14,12 @@
 ## Architecture
 
 - View <-> ViewModel <-> Manager
+- View <-> ViewModel <-> DAO <-> RoomDB
+  - <img src="./images/room_architecture.png" width="50%">
 
 ## Note
 
+- Store data from `in-memory` to `database`.
 - Room
   - Room is a persistence library that's part of Android Jetpack.
   - Room is an abstraction layer on top of a SQLite database.
