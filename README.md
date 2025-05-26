@@ -27,10 +27,13 @@
     - Database class
     - Data entities
     - Data access objects (DAOs)
+- Kotlin Symbol Processing (KSP)
+  - KSP is an API that you can use to develop lightweight compiler plugins.
+  - Compared to kapt, annotation processors that use KSP can run up to two times faster.
 
 ## Resources
 
 - [Room Database 🛢 in Android | Android Tutorial | 2024](https://www.youtube.com/watch?v=sWOmlDvz_3U&list=PLgpnJydBcnPA5aNrlDxxKWSqAma7m3OIl&index=8&ab_channel=EasyTuto)
 - [Save data in a local database using Room](https://developer.android.com/training/data-storage/room)
 - [androidx.room](https://developer.android.com/jetpack/androidx/releases/room)
-- [Kotlin Symbol Processing API] (https://kotlinlang.org/docs/ksp-overview.html)
+- [Kotlin Symbol Processing API](https://kotlinlang.org/docs/ksp-overview.html)
