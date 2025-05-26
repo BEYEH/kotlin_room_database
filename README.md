@@ -15,7 +15,7 @@
 
 - View <-> ViewModel <-> Manager
 - View <-> ViewModel <-> DAO <-> RoomDB
-  - <img src="./images/room_architecture.png" width="50%">
+  - <img src="./images/room_architecture.png" width="60%" alt="Room Architecture">
 
 ## Note
 
@@ -32,3 +32,4 @@
 
 - [Room Database 🛢 in Android | Android Tutorial | 2024](https://www.youtube.com/watch?v=sWOmlDvz_3U&list=PLgpnJydBcnPA5aNrlDxxKWSqAma7m3OIl&index=8&ab_channel=EasyTuto)
 - [Save data in a local database using Room](https://developer.android.com/training/data-storage/room)
+- [androidx.room](https://developer.android.com/jetpack/androidx/releases/room)
