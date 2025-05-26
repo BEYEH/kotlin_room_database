@@ -2,9 +2,14 @@
 
 ## Table of contents
 
+- [Requirement](#requirement)
 - [Architecture](#architecture)
 - [Note](#note)
 - [Resources](#resources)
+
+## Requirement
+
+- Device or an emulator with API level `26` or higher.
 
 ## Architecture
 
