@@ -1,5 +1,6 @@
 package com.example.kotlinroomdatabase.view
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -23,12 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlinroomdatabase.R
 import com.example.kotlinroomdatabase.model.Todo
-import com.example.kotlinroomdatabase.model.getFakeTodo
 import com.example.kotlinroomdatabase.viewmodel.TodoViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -36,10 +38,11 @@ import java.util.Locale
 
 @Composable
 fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
-    val todoList = getFakeTodo()
+    val todoList by viewModel.todoList.observeAsState()
     var inputText by remember {
         mutableStateOf("")
     }
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -54,23 +57,35 @@ fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
             OutlinedTextField(value = inputText, onValueChange = {
                 inputText = it
             })
-            Button(onClick = {}) {
+            Button(onClick = {
+                viewModel.addTodo(inputText)
+                inputText = ""
+            }) {
                 Text(text = "Add")
             }
         }
 
-        LazyColumn(
-            content = {
-                itemsIndexed(todoList) { index: Int, item ->
-                    TodoItem(item)
+        todoList?.let {
+            LazyColumn(
+                content = {
+                    itemsIndexed(it) { index: Int, item ->
+                        TodoItem(item = item, onDelete = {
+                            Toast.makeText(
+                                context,
+                                "Delete ${item.id}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            viewModel.deleteTodo(item.id)
+                        })
+                    }
                 }
-            }
-        )
+            )
+        } ?: Text(text = "No item.")
     }
 }
 
 @Composable
-fun TodoItem(item: Todo) {
+fun TodoItem(item: Todo, onDelete: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxSize()
@@ -97,7 +112,7 @@ fun TodoItem(item: Todo) {
                 color = Color.White
             )
         }
-        IconButton(onClick = {}) {
+        IconButton(onClick = onDelete) {
             Icon(
                 painter = painterResource(id = R.drawable.baseline_delete_24),
                 contentDescription = "Delete",

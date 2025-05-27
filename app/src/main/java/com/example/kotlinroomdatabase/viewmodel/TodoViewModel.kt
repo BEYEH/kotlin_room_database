@@ -10,7 +10,7 @@ class TodoViewModel : ViewModel() {
     var todoList: LiveData<List<Todo>> = _todoList
 
     fun getAllTodo() {
-        _todoList.value = TodoManager.getAllTodo()
+        _todoList.value = TodoManager.getAllTodo().reversed()
     }
 
     fun addTodo(title: String) {

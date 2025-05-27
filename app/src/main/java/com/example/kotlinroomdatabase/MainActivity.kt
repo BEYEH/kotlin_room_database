@@ -24,7 +24,8 @@ class MainActivity : ComponentActivity() {
             KotlinRoomDatabaseTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     TodoListPage(
-                        modifier = Modifier.padding(innerPadding),
+                        modifier = Modifier.padding(innerPadding)
+                            .fillMaxSize(),
                         todoViewModel
                     )
                 }
