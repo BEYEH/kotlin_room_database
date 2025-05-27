@@ -27,8 +27,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlinroomdatabase.R
-import com.example.kotlinroomdatabase.data.Todo
-import com.example.kotlinroomdatabase.data.getFakeTodo
+import com.example.kotlinroomdatabase.model.Todo
+import com.example.kotlinroomdatabase.model.getFakeTodo
 import java.text.SimpleDateFormat
 import java.util.Locale
 
