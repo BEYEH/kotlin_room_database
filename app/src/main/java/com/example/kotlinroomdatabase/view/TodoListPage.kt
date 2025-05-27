@@ -53,8 +53,9 @@ fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
         Row(
             modifier = Modifier
                 .padding(horizontal = 0.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedTextField(value = inputText, onValueChange = {
+            OutlinedTextField(modifier = Modifier.weight(1f), value = inputText, onValueChange = {
                 inputText = it
             })
             Button(onClick = {
