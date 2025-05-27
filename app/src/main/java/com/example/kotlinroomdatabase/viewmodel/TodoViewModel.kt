@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlinroomdatabase.model.Todo
 
-class TodoVIewModel : ViewModel() {
+class TodoViewModel : ViewModel() {
     private val _todoList = MutableLiveData<List<Todo>>()
     var todoList: LiveData<List<Todo>> = _todoList
 
