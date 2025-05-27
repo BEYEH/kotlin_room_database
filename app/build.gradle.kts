@@ -62,4 +62,6 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
+
+    implementation("androidx.compose.runtime:runtime-livedata:1.8.2")
 }
