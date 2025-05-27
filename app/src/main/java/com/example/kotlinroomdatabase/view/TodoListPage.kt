@@ -29,12 +29,13 @@ import androidx.compose.ui.unit.sp
 import com.example.kotlinroomdatabase.R
 import com.example.kotlinroomdatabase.model.Todo
 import com.example.kotlinroomdatabase.model.getFakeTodo
+import com.example.kotlinroomdatabase.viewmodel.TodoViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 
 @Composable
-fun TodoListPage(modifier: Modifier) {
+fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
     val todoList = getFakeTodo()
     var inputText by remember {
         mutableStateOf("")
