@@ -8,14 +8,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kotlinroomdatabase.R
 import com.example.kotlinroomdatabase.data.Todo
 import com.example.kotlinroomdatabase.data.getFakeTodo
 import java.text.SimpleDateFormat
@@ -58,6 +62,9 @@ fun TodoItem(item: Todo) {
             Text(text = item.title,
                 fontSize = 20.sp,
                 color = Color.White)
+        }
+        IconButton(onClick = {}) {
+            Icon(painter = painterResource(id = R.drawable.baseline_delete_24), contentDescription = "Delete")
         }
     }
 }
