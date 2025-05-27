@@ -2,9 +2,11 @@ package com.example.kotlinroomdatabase.view
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -27,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlinroomdatabase.R
@@ -37,7 +40,7 @@ import java.util.Locale
 
 
 @Composable
-fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
+fun TodoListPage(viewModel: TodoViewModel) {
     val todoList by viewModel.todoList.observeAsState()
     var inputText by remember {
         mutableStateOf("")
@@ -45,19 +48,24 @@ fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
     val context = LocalContext.current
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
+        modifier = Modifier
+            .fillMaxHeight()
             .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+
+        ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 0.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            OutlinedTextField(modifier = Modifier.weight(1f), value = inputText, onValueChange = {
-                inputText = it
-            })
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
+                value = inputText,
+                onValueChange = {
+                    inputText = it
+                })
             Button(onClick = {
                 viewModel.addTodo(inputText)
                 inputText = ""
@@ -69,7 +77,7 @@ fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
         todoList?.let {
             LazyColumn(
                 content = {
-                    itemsIndexed(it) { index: Int, item ->
+                    itemsIndexed(it) { index: Int, item: Todo ->
                         TodoItem(item = item, onDelete = {
                             Toast.makeText(
                                 context,
@@ -81,7 +89,12 @@ fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
                     }
                 }
             )
-        } ?: Text(text = "No item.")
+        } ?: Text(
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = "No item.",
+            fontSize = 16.sp
+        )
     }
 }
 
@@ -89,7 +102,7 @@ fun TodoListPage(modifier: Modifier, viewModel: TodoViewModel) {
 fun TodoItem(item: Todo, onDelete: () -> Unit) {
     Row(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(8.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.primary)
