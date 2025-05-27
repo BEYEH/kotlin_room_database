@@ -8,11 +8,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,8 +36,28 @@ import java.util.Locale
 @Composable
 fun TodoListPage(modifier: Modifier) {
     val todoList = getFakeTodo()
+    var inputText by remember {
+        mutableStateOf("")
+    }
 
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 0.dp, vertical = 8.dp),
+        ) {
+            OutlinedTextField(value = inputText, onValueChange = {
+                inputText = it
+            })
+            Button(onClick = {}) {
+                Text(text = "Add")
+            }
+        }
+
         LazyColumn(
             content = {
                 itemsIndexed(todoList) { index: Int, item ->
