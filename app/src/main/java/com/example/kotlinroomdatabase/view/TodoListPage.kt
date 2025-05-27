@@ -1,11 +1,13 @@
 package com.example.kotlinroomdatabase.view
 
+import android.R.attr.text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.kotlinroomdatabase.data.Todo
 import com.example.kotlinroomdatabase.data.getFakeTodo
 
 
@@ -17,9 +19,14 @@ fun TodoListPage(modifier: Modifier) {
         LazyColumn(
             content = {
                 itemsIndexed(todoList) { index: Int, item ->
-                    Text(text = item.toString())
+                    TodoItem(item)
                 }
             }
         )
     }
+}
+
+@Composable
+fun TodoItem(item: Todo){
+    Text(text= item.toString())
 }
