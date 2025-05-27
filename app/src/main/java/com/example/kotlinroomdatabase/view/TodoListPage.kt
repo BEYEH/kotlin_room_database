@@ -13,7 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.kotlinroomdatabase.data.Todo
 import com.example.kotlinroomdatabase.data.getFakeTodo
 import java.text.SimpleDateFormat
@@ -49,9 +51,13 @@ fun TodoItem(item: Todo) {
                 text = SimpleDateFormat(
                     "yyyy/MM/dd HH:mm:ss",
                     Locale.ENGLISH
-                ).format(item.createAt)
+                ).format(item.createAt),
+                fontSize = 16.sp,
+                color = Color.White
             )
-            Text(text = item.title)
+            Text(text = item.title,
+                fontSize = 20.sp,
+                color = Color.White)
         }
     }
 }
