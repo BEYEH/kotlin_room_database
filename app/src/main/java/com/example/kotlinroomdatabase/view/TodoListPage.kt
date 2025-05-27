@@ -44,13 +44,16 @@ fun TodoListPage(modifier: Modifier) {
 @Composable
 fun TodoItem(item: Todo) {
     Row(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(8.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.primary)
             .padding(16.dp)
     ) {
-        Column {
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
             Text(
                 text = SimpleDateFormat(
                     "yyyy/MM/dd HH:mm:ss",
@@ -59,12 +62,18 @@ fun TodoItem(item: Todo) {
                 fontSize = 16.sp,
                 color = Color.White
             )
-            Text(text = item.title,
+            Text(
+                text = item.title,
                 fontSize = 20.sp,
-                color = Color.White)
+                color = Color.White
+            )
         }
         IconButton(onClick = {}) {
-            Icon(painter = painterResource(id = R.drawable.baseline_delete_24), contentDescription = "Delete")
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_delete_24),
+                contentDescription = "Delete",
+                tint = Color.White
+            )
         }
     }
 }
